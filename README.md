@@ -1,16 +1,10 @@
-# Pong Multiplayer
+# Pong Multiplayerv2
+A fork of Godot Engine's multiplayer [Pong](https://github.com/godotengine/godot-demo-projects/tree/master/networking/multiplayer_pong) project which I am rewriting to support the TCP protocol.
 
-A multiplayer demo of Pong. One player presses "host".
-The other presses "join". This only works locally.
+With that said, I am also adding support for hosting a Linux server for this game.
 
-Language: GDScript
+This project will be used in a demo where I demonstrate a server directory I've been working on for [@modcommunity](https://github.com/modcommunity). For more information on this, please check [this repository](https://github.com/gamemann/tmc-servers-engine) out!
 
-Renderer: GLES 2
-
-Note: The non-multiplayer version is available [here](https://github.com/godotengine/godot-demo-projects/tree/master/2d/pong).
-
-Check out this demo on the asset library: https://godotengine.org/asset-library/asset/138
-
-## Screenshots
-
-![Screenshot](screenshots/pong_multiplayer.png)
+# Credits
+* [Godot Engine](http://godotengine.org/)
+* [Christian Deacon](https://github.com) - Rewriting project in TCP to support HTML 5 and implementing Linux server.
