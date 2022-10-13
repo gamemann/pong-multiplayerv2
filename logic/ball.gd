@@ -9,6 +9,12 @@ var _speed = DEFAULT_SPEED
 onready var _screen_size = get_viewport_rect().size
 
 func _process(delta):
+	# We must poll properly under TCP and web sockets.
+	if (NetVars.server && NetVars.server.is_listening()):
+		NetVars.server.poll();
+	elif (NetVars.client && NetVars.client.get_connected_port() > 0):
+		NetVars.client.poll();
+		
 	_speed += delta
 	# Ball will move normally for both players,
 	# even if it's sightly out of sync between them,

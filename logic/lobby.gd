@@ -13,8 +13,6 @@ onready var status_fail = $StatusFail
 onready var port_forward_label = $PortForward
 onready var find_public_ip_button = $FindPublicIP
 
-var peer = null
-
 func _ready():
 	# Connect all the callbacks related to networking.
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -87,15 +85,15 @@ func _set_status(text, isok):
 
 
 func _on_host_pressed():
-	peer = NetworkedMultiplayerENet.new()
-	peer.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	var err = peer.create_server(DEFAULT_PORT, 1) # Maximum of 1 peer, since it's a 2-player game.
+	NetVars.server = WebSocketServer.new();
+	
+	var err = NetVars.server.listen(DEFAULT_PORT, PoolStringArray(), 1) # Maximum of 1 peer, since it's a 2-player game.
 	if err != OK:
 		# Is another server running?
 		_set_status("Can't host, address in use.",false)
 		return
-
-	get_tree().set_network_peer(peer)
+		
+	get_tree().set_network_peer(NetVars.server)
 	host_button.set_disabled(true)
 	join_button.set_disabled(true)
 	_set_status("Waiting for player...", true)
@@ -111,10 +109,9 @@ func _on_join_pressed():
 		_set_status("IP address is invalid", false)
 		return
 
-	peer = NetworkedMultiplayerENet.new()
-	peer.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	peer.create_client(ip, DEFAULT_PORT)
-	get_tree().set_network_peer(peer)
+	NetVars.client = WebSocketClient.new()
+	NetVars.client.connect_to_url("ws://" + ip + ":" + str(DEFAULT_PORT), PoolStringArray(), 1)
+	get_tree().set_network_peer(NetVars.client)
 
 	_set_status("Connecting...", true)
 

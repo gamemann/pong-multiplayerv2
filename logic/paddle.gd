@@ -10,6 +10,12 @@ var _you_hidden = false
 onready var _screen_size_y = get_viewport_rect().size.y
 
 func _process(delta):
+	# We must poll properly under TCP and web sockets.
+	if (NetVars.server && NetVars.server.is_listening()):
+		NetVars.server.poll();
+	elif (NetVars.client && NetVars.client.get_connected_port() > 0):
+		NetVars.client.poll();
+		
 	# Is the master of the paddle.
 	if is_network_master():
 		_motion = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
