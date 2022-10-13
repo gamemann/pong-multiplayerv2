@@ -10,12 +10,15 @@ config_version=4
 
 [application]
 
-config/name="Pong Multiplayer"
-config/description="A multiplayer demo of the classical pong game.
-One of the players should press 'host', while the
-other should select the address and press 'join'."
+config/name="pong-multiplayerv2"
+config/description="Fork of Godot Engine's Pong game with added TCP and Linux server support."
 run/main_scene="res://lobby.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://pong.tscn"
+NetVars="*res://netvars.gd"
 
 [debug]
 
