@@ -1,6 +1,0 @@
-*.gd eol=lf
-*.tscn eol=lf
-*.material eol=lf
-*.cfg eol=lf
-*.godot eol=lf
-*.import eol=lf
