@@ -7,4 +7,4 @@ This project will be used in a demo where I demonstrate a server directory I've 
 
 # Credits
 * [Godot Engine](http://godotengine.org/)
-* [Christian Deacon](https://github.com) - Rewriting project in TCP to support HTML 5 and implementing Linux server.
+* [Christian Deacon](https://github.com/gamemann) - Rewriting project in TCP to support HTML 5 and implementing Linux server.
